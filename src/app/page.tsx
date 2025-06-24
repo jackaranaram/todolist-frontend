@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { taskService } from '@/services/taskService';
 import DynamicIslandTodo from '@/components/DynamicIsland';
 import { Task } from '@/models/task';
-import Link from 'next/link';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);

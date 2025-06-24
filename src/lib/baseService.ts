@@ -77,7 +77,7 @@ export class BaseService<T> {
     }
   }
 
-  public async healthCheck(): Promise<any> {
+  public async healthCheck(): Promise<unknown> {
     try {
       const res = await this.api.get('/actuator/health');
       return res.data;
