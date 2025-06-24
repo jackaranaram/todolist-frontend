@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@/styles/DynamicIslandTodo.css"
-import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
+import MouseMoveEffect from "@/components/shared/mouse-move-effect";
+import { ThemeProvider } from "@/components/theme-provider";
 
 
 const inter = Inter({ subsets: ["latin"] })
@@ -23,6 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <MouseMoveEffect />
+          <Header />
           {children}
           <Footer />
         </ThemeProvider>

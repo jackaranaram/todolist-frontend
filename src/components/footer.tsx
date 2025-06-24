@@ -21,7 +21,7 @@ export default function Footer() {
           </Link>
           <Link
             className="text-xs hover:underline underline-offset-4"
-            href="https://github.com/jackaranaram/backend-todolist"
+            href="https://github.com/jackaranaram/"
             target="_blank"
             rel="noopener noreferrer"
           >
