@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { GoogleSignIn } from '@/components/GoogleSignIn';
+import { AuthGuard } from '@/components/AuthGuard';
 import { authService } from '@/services/authService';
 // import { console } from 'inspector';
 
@@ -56,7 +57,7 @@ export default function SignUpPage() {
       localStorage.setItem('auth_user', JSON.stringify(response.user));
 
       // Redirigir al dashboard
-      router.push('/');
+      router.push('/dashboard');
     } catch (error: unknown) {
       console.error('Error completo:', error);
       
@@ -93,7 +94,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
+    <AuthGuard requireAuth={false}>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
@@ -201,5 +203,6 @@ export default function SignUpPage() {
         </CardContent>
       </Card>
     </div>
+    </AuthGuard>
   );
 }
