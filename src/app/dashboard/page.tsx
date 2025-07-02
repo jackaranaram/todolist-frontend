@@ -6,7 +6,6 @@ import DynamicIslandTodo from '@/components/shared/dynamic-island-todo';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Task } from '@/models/task';
 import { useAuth } from '@/contexts/AuthContext';
-import Navbar from '@/components/Navbar';
 import { toast } from 'sonner';
 
 export default function Dashboard() {
