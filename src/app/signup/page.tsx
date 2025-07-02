@@ -107,7 +107,17 @@ export default function SignUpPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Google Sign In */}
-          <GoogleSignIn />
+          <GoogleSignIn 
+            showPopupButton={false} // Solo botón estándar de Google
+            autoPrompt={false}
+            onSuccess={() => {
+              router.push('/dashboard');
+            }}
+            onError={(error) => {
+              console.error('Error con Google Sign-In:', error);
+              setError('Error al registrarse con Google');
+            }}
+          />
           
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

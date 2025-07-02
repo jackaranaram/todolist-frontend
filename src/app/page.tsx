@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import DynamicIslandTodo from '@/components/shared/dynamic-island-todo';
+import { GoogleSignIn } from '@/components/GoogleSignIn';
 import { Task } from '@/models/task';
-import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 // Datos de ejemplo para la demo
@@ -18,6 +19,11 @@ const initialDemoTasks: Task[] = [
 export default function Home() {
   const [demoTasks, setDemoTasks] = useState<Task[]>(initialDemoTasks);
   const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleGoogleSuccess = () => {
+    router.push('/dashboard');
+  };
 
   const handleAdd = (title: string) => {
     const newTask: Task = {
@@ -42,6 +48,19 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen">
+      {/* Google Sign-In invisible para autoPrompt solo si no está autenticado */}
+      {!isAuthenticated && (
+        <div className="sr-only">
+          <GoogleSignIn 
+            autoPrompt={true}  // Temporalmente deshabilitado hasta configurar Client ID
+            showPopupButton={false}
+            onSuccess={handleGoogleSuccess}
+            onError={(error) => {
+              console.error('Error con Google Sign-In:', error);
+            }}
+          />
+        </div>
+      )}
       {/* Background gradients */}
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />

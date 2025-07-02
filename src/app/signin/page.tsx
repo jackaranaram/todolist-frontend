@@ -106,6 +106,8 @@ export default function SignInPage() {
             </div>
 
             <GoogleSignIn 
+              showPopupButton={false} // Solo botón estándar de Google
+              autoPrompt={false}
               onSuccess={handleGoogleSuccess}
               onError={(error) => {
                 console.error('Error con Google Sign-In:', error);
